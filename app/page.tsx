@@ -74,15 +74,28 @@ export default function DashboardPage() {
             })}
           </p>
         </div>
-        <button
-          onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-medium rounded-xl hover:bg-indigo-700 transition-colors shadow-sm"
-        >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
-          Add Expense
-        </button>
+        <div className="flex items-center gap-2">
+          {expenses.length > 0 && (
+            <button
+              onClick={() => exportToCSV(expenses)}
+              className="flex items-center gap-2 px-4 py-2.5 border border-gray-300 text-gray-700 text-sm font-medium rounded-xl hover:bg-gray-50 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Export Data
+            </button>
+          )}
+          <button
+            onClick={() => setShowForm(true)}
+            className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-medium rounded-xl hover:bg-indigo-700 transition-colors shadow-sm"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+            Add Expense
+          </button>
+        </div>
       </div>
 
       {/* Summary Cards */}
@@ -144,26 +157,6 @@ export default function DashboardPage() {
             className="px-5 py-2.5 rounded-xl bg-gray-100 text-gray-700 text-sm font-medium hover:bg-gray-200 transition-colors"
           >
             Load Sample Data
-          </button>
-        </div>
-      )}
-
-      {/* Quick export */}
-      {expenses.length > 0 && (
-        <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-indigo-900">
-              Export your data
-            </p>
-            <p className="text-xs text-indigo-600 mt-0.5">
-              Download all {expenses.length} expenses as CSV
-            </p>
-          </div>
-          <button
-            onClick={() => exportToCSV(expenses)}
-            className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
-          >
-            Export CSV
           </button>
         </div>
       )}
